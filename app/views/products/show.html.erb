@@ -21,10 +21,43 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
-        </dl>
+          <dd><%= @product.price %></dd>   
+
+          <% @product.reviews.reverse.each do |review| %>
+              <dt>Rating</dt>
+              <dd><%= review.rating %></dd>
+              <dt>Comment</dt>
+              <dd><%= review.description %></dd>
+
+              <% if current_user %>
+                <% if current_user.id == review.user_id %>
+                  <%= button_to 'Delete Review', review, method: :delete %>
+                <% end %>
+              <% end %>
+              
+          <% end %>
+
+          </dl>         
       </div>
     </div>
+
+    <% if current_user %>
+      <%= form_for([@product, @review]) do |form| %>
+
+        <div class='field'>
+          <%= form.label :Comment %>
+          <%= form.text_area :description %>
+        </div>
+        <div class= 'field'>
+          <%= form.label :rating %>
+          <%= form.select(:rating, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+        </div>
+        <div class='actions'>
+          <%= form.submit 'Submit Review' %>
+        </div>
+
+      <% end %>
+    <% end %>
 
   </article>
 

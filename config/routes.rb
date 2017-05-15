@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :show]
     resources :categories, only: [:show]
+    resources :products do
+      resources :reviews, only: [:create]
+    end
+    resources :reviews, only: [:destroy]
       
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
