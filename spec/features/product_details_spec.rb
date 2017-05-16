@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature do js: true
+RSpec.feature "ProductDetails", type: :feature, js: true do
 
     # SETUP
   before :each do
@@ -14,6 +14,14 @@ RSpec.feature "ProductDetails", type: :feature do js: true
         price: 64.99
       )
     end
+  end
+
+  scenario 'they click on a product details button' do
+    visit '/products'
+    first('article.product').find_link('Details').click
+    sleep(3)
+    save_screenshot
+
   end
 
 end
