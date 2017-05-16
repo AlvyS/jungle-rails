@@ -15,6 +15,13 @@ class SessionsController < ApplicationController
             # If user's login doesn't work, send them back to the login form.
             redirect_to '/login'
         end
+
+        if user = User.authenticate_with_credentials(params[:email], params[:password])
+        # success logic, log them in
+        else
+        # failure, render login form
+end
+
     end
 
         def destroy
