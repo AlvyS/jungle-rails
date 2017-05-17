@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "ProductDetails", type: :feature, js: true do
 
-    # SETUP
+  # SETUP
   before :each do
     @category = Category.create! name: 'Apparel'
     10.times do |n|
@@ -16,12 +16,12 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     end
   end
 
-  scenario 'they click on a product details button' do
+  scenario 'they click on a products add to cart button' do
     visit '/products'
-    save_screenshot('products-page.png')
-    first('article.product').find_link('Details').click
-    sleep(3)
-    save_screenshot('product-details-page.png')
+    save_screenshot('add-to-cart-before.png')
+    first('article.product').find_link('Add').click
+    sleep(1)
+    save_screenshot('add-to-cart-after.png')
 
   end
 
