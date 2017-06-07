@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Jungle</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
 
-  <% if current_user %>
-    Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>
-  <% else %>
-    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-  <% end %>
+  <head>
+    <title>Jungle</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <%= render 'layouts/top_nav' %>
+  <body>
+    <% if current_user %>
+      Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+    <% end %>
 
-  <main class="container">
-    <%= yield %>
-  </main>
+    <%= render 'layouts/top_nav' %>
+    
+    <main class="container">
+      <%= yield %>
+    </main>
+    <%= yield :end_of_body %>
+  </body>
 
-  <%= yield :end_of_body %>
-</body>
 </html>
